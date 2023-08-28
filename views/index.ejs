@@ -4,35 +4,32 @@
 <div class="container text-center">
     <div class="row justify-content-center my-5">
         <div class="col-6" id="title">
-            <% if (locals.status && locals.day) { %>
-                <% if (status === "today") { %>
-                    <h1> <%= day %>  </h1>  
-                <% } else { %>
-                    <h1> Work List </h1>    
-                <% } %>
-            <% } else { %>
-                <h1> Today list </h1>
-            <% } %>
+            <% if ( locals.listName) { %>
+                <h1> <%= listName %></h1>
+            <% } %>  
         </div>
     </div>
     <div class="row justify-content-center mb-4">
         <div class="row col-6 justify-content-center align-items-center" id="list"> 
             <div class="row item align-items-center">
                 <form action="/" method="POST">
-                  <input type="text" name="NewItem" placeholder="New Item" >
-                  <button type="submit button" name="list" value="list" list class="btn btn-primary submitButton">+</button>
+                  <input type="text" name="name" placeholder="New Item" >
+                  <button type="submit button" name="list" value="<%= listName %>" list class="btn btn-primary submitButton">+</button>
                 </form>
             </div>
-                <% if (locals.workItems) { %>
-                    <% for (let i = 0; i < workItems.length; i++) { %>
+                <% if (locals.items) { %>
+                    <% items.forEach(item => { %>
                         <div class="row item borderTop" >
-                            <div class="col itemItem d-flex justify-content-start "> 
-                                <input type="checkbox" class="checkbox"> 
-                                <label for="checkbox"> <%= workItems[i] %> </label>
-                            </div>
+                            <form action="/delete" method="POST">
+                                <div class="col itemItem d-flex justify-content-start "> 
+                                    <input type="checkbox" class="checkbox" name="checkbox" value="<%=item._id %>" onChange="this.form.submit()"> 
+                                    <label for="checkbox"> <%= item.name %> </label>
+                                    <input name="list" type="hidden" value="<%=listName %>">
+                                </div>
+                            </form>
                             
                         </div>
-                     <% } %>   
+                   <% }); %>
                 <% } %>
         </div>
     </div>
