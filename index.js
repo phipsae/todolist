@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import _ from 'lodash';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 var status = "today";
 
