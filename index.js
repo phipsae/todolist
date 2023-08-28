@@ -13,7 +13,7 @@ var listName = "Today"
 
 // main().catch(err => console.log(err));
 
-await mongoose.connect('mongodb://127.0.0.1:27017/todolist');
+await mongoose.connect('mongodb+srv://philipotto25:zDlW0NxHhzQpf12R@cluster0.hzbfxgf.mongodb.net/todolist');
 
 const itemSchema = new mongoose.Schema ({
     name: String
